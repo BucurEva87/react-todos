@@ -1,0 +1,38 @@
+.todoItem {
+  margin: 2rem;
+  padding: 2rem;
+  padding-right: 0;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+
+  input[type=checkbox] {
+    margin-right: 1rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  input[type=checkbox]:checked + span {
+    text-decoration: line-through;
+    font-style: italic;
+    color: #333;
+  }
+
+  input[type=text] {
+    border: none;
+    outline: none;
+    width: auto;
+    padding: 2rem;
+    padding-right: 0;
+    font-size: 1.4rem;
+  }
+
+  button {
+    padding: 1rem;
+  }
+
+  .push-right {
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+}
