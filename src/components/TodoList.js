@@ -4,7 +4,7 @@ import TodoItem from './TodoItem';
 
 export default class TodoList extends PureComponent {
   render() {
-    const { todos } = this.props;
+    const { todos, completeTodo } = this.props;
 
     return (
       <ul>
@@ -17,6 +17,7 @@ export default class TodoList extends PureComponent {
               id={id}
               title={title}
               completed={completed}
+              completeTodo={completeTodo}
             />
           );
         })}
@@ -35,4 +36,5 @@ TodoList.propTypes = {
     title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
   })),
+  completeTodo: PropTypes.func.isRequired,
 };
