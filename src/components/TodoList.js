@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { PropTypes as PT } from 'prop-types';
 import TodoItem from './TodoItem';
 
 import style from '../styles/TodoList.module.scss';
@@ -33,10 +33,10 @@ TodoList.defaultProps = {
 };
 
 TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired,
+  todos: PT.arrayOf(PT.shape({
+    id: PT.string.isRequired,
+    title: PT.string.isRequired,
+    completed: PT.bool.isRequired,
   })),
-  completeTodo: PropTypes.func.isRequired,
+  completeTodo: PT.func.isRequired,
 };
