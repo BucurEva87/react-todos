@@ -1,16 +1,23 @@
 import React, { PureComponent } from 'react';
 
+import style from '../styles/TodoInput.module.scss';
+
 export default class TodoInput extends PureComponent {
   render() {
     return (
-      <div>
+      <form>
         <input
           type="text"
-          id="todoInput"
+          id={style.todoInput}
           placeholder="Insert another Todo task..."
         />
-        <button type="button">Add todo</button>
-      </div>
+        <button
+          type="button"
+          id={style.btnSubmit}
+        >
+          Add todo
+        </button>
+      </form>
     );
   }
 }

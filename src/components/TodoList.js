@@ -2,12 +2,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
+import style from '../styles/TodoList.module.scss';
+
 export default class TodoList extends PureComponent {
   render() {
     const { todos, completeTodo } = this.props;
 
     return (
-      <ul>
+      <ul id={style.todoList}>
         { todos.length && todos.map((todo) => {
           const { id, title, completed } = todo;
 

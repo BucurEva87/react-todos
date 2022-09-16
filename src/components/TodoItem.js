@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import style from '../styles/TodoItem.module.scss';
+
 export default class TodoItem extends PureComponent {
   render() {
     const { id, title, completed } = this.props;
     const { completeTodo } = this.props;
 
     return (
-      <li>
+      <li className={style.todoItem}>
         <input
           type="checkbox"
           checked={completed}
@@ -16,7 +18,7 @@ export default class TodoItem extends PureComponent {
         <span>{title}</span>
         <button
           type="button"
-          className="edit"
+          className={`edit ${style['push-right']}`}
         >
           Edit
         </button>

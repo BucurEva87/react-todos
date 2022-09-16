@@ -1,0 +1,15 @@
+form {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#todoInput {
+  width: 85%;
+  padding: 1rem;
+}
+
+#btnSubmit {
+  width: 10%;
+  padding: 1rem;
+}

@@ -4,6 +4,8 @@ import TodoHeader from './TodoHeader';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
+import style from '../styles/TodoContainer.module.scss';
+
 export default class TodoContainer extends Component {
   constructor(props) {
     super(props);
@@ -49,14 +51,14 @@ export default class TodoContainer extends Component {
     const { todos } = this.state;
 
     return (
-      <>
+      <div id={style.todoContainer}>
         <TodoHeader />
         <TodoInput />
         <TodoList
           todos={todos}
           completeTodo={this.completeTodo}
         />
-      </>
+      </div>
     );
   }
 }
