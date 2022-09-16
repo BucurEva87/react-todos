@@ -6,7 +6,7 @@ import style from '../styles/TodoList.module.scss';
 
 export default class TodoList extends PureComponent {
   render() {
-    const { todos, completeTodo } = this.props;
+    const { todos, completeTodo, updateTodo } = this.props;
 
     return (
       <ul id={style.todoList}>
@@ -20,6 +20,7 @@ export default class TodoList extends PureComponent {
               title={title}
               completed={completed}
               completeTodo={completeTodo}
+              updateTodo={updateTodo}
             />
           );
         })}
@@ -39,4 +40,5 @@ TodoList.propTypes = {
     completed: PT.bool.isRequired,
   })),
   completeTodo: PT.func.isRequired,
+  updateTodo: PT.func.isRequired,
 };

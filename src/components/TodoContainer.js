@@ -34,6 +34,7 @@ export default class TodoContainer extends Component {
 
     this.addTodo = this.addTodo.bind(this);
     this.completeTodo = this.completeTodo.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
   }
 
   addTodo(title) {
@@ -81,6 +82,28 @@ export default class TodoContainer extends Component {
     });
   }
 
+  updateTodo(id, title) {
+    const { todos } = this.state;
+    const todo = todos.find((todo) => todo.id === id);
+
+    if (!todo) {
+      this.addAnnouncement(`No todo task with id ${id} exists.`, 'error');
+      return;
+    }
+
+    this.setState({
+      todos: todos.map((todo) => {
+        const copy = todo;
+
+        if (copy.id === id) copy.title = title;
+
+        return copy;
+      }),
+    });
+
+    this.addAnnouncement('Todo task title was successfully updated!', 'succes');
+  }
+
   addAnnouncement(message, type, durration) {
     this.setState((prevState) => {
       const { announcements } = prevState;
@@ -107,6 +130,7 @@ export default class TodoContainer extends Component {
         <TodoList
           todos={todos}
           completeTodo={this.completeTodo}
+          updateTodo={this.updateTodo}
         />
         { announcements.length && <AnnouncementContainer announcements={announcements} /> }
       </div>
