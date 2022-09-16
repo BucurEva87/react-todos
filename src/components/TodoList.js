@@ -8,9 +8,18 @@ export default class TodoList extends PureComponent {
 
     return (
       <ul>
-        { todos.length && todos.map((todo) => (
-          <TodoItem />
-        ))}
+        { todos.length && todos.map((todo) => {
+          const { id, title, completed } = todo;
+
+          return (
+            <TodoItem
+              key={id}
+              id={id}
+              title={title}
+              completed={completed}
+            />
+          );
+        })}
       </ul>
     );
   }
