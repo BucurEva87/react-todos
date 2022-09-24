@@ -6,6 +6,7 @@ import TodoList from './TodoList';
 import AnnouncementContainer from './AnnouncementContainer';
 
 import style from '../styles/TodoContainer.module.scss';
+// import TestParent from './TestParent';
 
 export default class TodoContainer extends Component {
   constructor(props) {
@@ -34,6 +35,29 @@ export default class TodoContainer extends Component {
 
     this.addTodo = this.addTodo.bind(this);
     this.completeTodo = this.completeTodo.bind(this);
+    this.updateTodo = this.updateTodo.bind(this);
+  }
+
+  componentDidMount() {
+    this.ticker = setInterval(() => {
+      this.setState((prevState) => {
+        const { announcements } = prevState;
+
+        return {
+          announcements: announcements.map((announcement) => {
+            const copy = announcement;
+
+            copy.elapsed += 500;
+
+            return copy;
+          }).filter((announcement) => announcement.elapsed <= announcement.duration),
+        };
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.ticker);
   }
 
   addTodo(title) {
@@ -81,7 +105,29 @@ export default class TodoContainer extends Component {
     });
   }
 
-  addAnnouncement(message, type, durration) {
+  updateTodo(id, title) {
+    const { todos } = this.state;
+    const todo = todos.find((todo) => todo.id === id);
+
+    if (!todo) {
+      this.addAnnouncement(`No todo task with id ${id} exists.`, 'error');
+      return;
+    }
+
+    this.setState({
+      todos: todos.map((todo) => {
+        const copy = todo;
+
+        if (copy.id === id) copy.title = title;
+
+        return copy;
+      }),
+    });
+
+    this.addAnnouncement('Todo task title was successfully updated!', 'succes');
+  }
+
+  addAnnouncement(message, type, duration = 15000) {
     this.setState((prevState) => {
       const { announcements } = prevState;
       const announcementId = uuidv4();
@@ -91,7 +137,8 @@ export default class TodoContainer extends Component {
           id: announcementId,
           type,
           message,
-          durration,
+          duration,
+          elapsed: 0,
         }],
       };
     });
@@ -107,6 +154,7 @@ export default class TodoContainer extends Component {
         <TodoList
           todos={todos}
           completeTodo={this.completeTodo}
+          updateTodo={this.updateTodo}
         />
         { announcements.length && <AnnouncementContainer announcements={announcements} /> }
       </div>

@@ -5,12 +5,6 @@ import style from '../styles/AnnouncementContainer.module.scss';
 import Announcement from './Announcement';
 
 export default class AnnouncementContainer extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.durration = 4000;
-  }
-
   render() {
     const { announcements } = this.props;
 
@@ -18,16 +12,16 @@ export default class AnnouncementContainer extends PureComponent {
       <div id={style.announcementContainer}>
         {announcements.map((announcement) => {
           const {
-            id, type, message, durration,
+            id, type, message, duration, elapsed,
           } = announcement;
 
           return (
             <Announcement
               key={id}
-              id={id}
               type={type}
               message={message}
-              durration={durration ?? this.durration}
+              duration={duration}
+              elapsed={elapsed}
             />
           );
         })}
@@ -41,6 +35,7 @@ AnnouncementContainer.propTypes = {
     id: PT.string.isRequired,
     type: PT.string,
     message: PT.string.isRequired,
-    durration: PT.number,
+    duration: PT.number,
+    elapsed: PT.number.isRequired,
   })).isRequired,
 };
