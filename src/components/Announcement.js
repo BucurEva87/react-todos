@@ -3,16 +3,26 @@ import { PropTypes as PT } from 'prop-types';
 
 import style from '../styles/Announcement.module.scss';
 
+// console.log(style.announcement);
+
 export default class Announcement extends PureComponent {
   render() {
     const {
-      // eslint-disable-next-line
-      id, type, message, durration,
+      type, message, elapsed, duration,
     } = this.props;
 
     return (
-      <div className={`${style.announcement} ${style[type]}`}>
-        <div className={style.bar} />
+      <div
+        className={`${style.announcement} ${style[type]}`}
+        style={{ opacity: elapsed > (duration * (3 / 4)) ? 0.75 : 1 }}
+      >
+        <div
+          className={style.bar}
+          style={{
+            width: `${100 - (elapsed / (duration / 100))}%`,
+            opacity: elapsed > (duration * (3 / 4)) ? 0.5 : 1,
+          }}
+        />
         {message}
       </div>
     );
@@ -21,12 +31,12 @@ export default class Announcement extends PureComponent {
 
 Announcement.defaultProps = {
   type: 'info',
-  durration: 4000,
+  duration: 5000,
 };
 
 Announcement.propTypes = {
-  id: PT.string.isRequired,
   type: PT.string,
   message: PT.string.isRequired,
-  durration: PT.number,
+  duration: PT.number,
+  elapsed: PT.number.isRequired,
 };

@@ -1,27 +1,5 @@
 @import 'variables';
 
-.announcement {
-  width: 100%;
-  padding: 1.5rem;
-  color: $announcement;
-  min-height: 5rem;
-  position: relative;
-  font-size: 1.4rem;
-
-  .bar {
-    height: 0.5rem;
-    width: 100%;
-    background-color: $green;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-}
-
-.announcement + .announcement {
-  margin-top: 0.5rem;
-}
-
 .info {
   background-color: $lightblue;
 }
@@ -36,4 +14,41 @@
 
 .error {
   background-color: $lightred;
+}
+
+.announcement {
+  width: 100%;
+  padding: 1.5rem;
+  color: $announcement;
+  min-height: 5rem;
+  position: relative;
+  font-size: 1.4rem;
+
+  .bar {
+    height: 0.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $green;
+
+    // .info {
+    //   background-color: darken($lightblue, 30%);
+    // }
+
+    // .success {
+    //   background-color: darken($lightgreen, 30%);
+    // }
+
+    // .warning {
+    //   background-color: darken($lightyellow, 30%);
+    // }
+
+    // .error {
+    //   background-color: darken($lightred, 30%);
+    // }
+  }
+}
+
+.announcement + .announcement {
+  margin-top: 0.5rem;
 }

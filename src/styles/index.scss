@@ -18,3 +18,7 @@ body {
 
   @include flexCenter;
 }
+
+iframe {
+  display: none;
+}

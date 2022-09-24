@@ -13,9 +13,7 @@ export default class TodoItem extends Component {
       editing: false,
       newTitle: title,
     };
-
     this.span = React.createRef();
-
     this.updateTitle = this.updateTitle.bind(this);
     this.endEditing = this.endEditing.bind(this);
   }
@@ -28,8 +26,8 @@ export default class TodoItem extends Component {
     const { id, title, updateTodo } = this.props;
     const { newTitle } = this.state;
 
-    this.setState({ editing: false });
     updateTodo(id, newTitle);
+    this.setState({ editing: false });
     this.setState({ newTitle: title });
   }
 
